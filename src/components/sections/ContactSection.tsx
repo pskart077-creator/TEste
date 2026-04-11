@@ -1,36 +1,46 @@
 ﻿export function ContactSection() {
   return (
-    <section id="contato" className="cta-panel section-anchor">
-      <h2>Pronto para lancar sua landing completa?</h2>
-      <p>
-        Fale com a PlugGo e receba um plano pratico para sair da ideia para execucao com clareza e velocidade.
-      </p>
+    <section id="contato" className="contact-section section-anchor">
+      <div className="contact-wrap">
+        <div className="contact-content">
+          <h2 className="contact-title">Fale Com A Plug Go</h2>
+          <p className="contact-description">
+            Descubra como a Plug Go pode simplificar sua rotina financeira com
+            uma experiência mais prática, segura e conectada para pessoas e
+            empresas.
+          </p>
+        </div>
 
-      <div className="contact-channels">
-        <article className="contact-chip">
-          <p className="contact-chip-label">Email</p>
-          <p className="contact-chip-value">contato@pluggo.com</p>
-        </article>
+        <div className="contact-form-card">
+          <h3 className="contact-form-title">Vamos Conversar?</h3>
 
-        <article className="contact-chip">
-          <p className="contact-chip-label">WhatsApp</p>
-          <p className="contact-chip-value">+55 (11) 99999-9999</p>
-        </article>
+          <form className="contact-form">
+            <div className="contact-form-row">
+              <input type="text" placeholder="Nome" />
+              <input type="email" placeholder="E-mail" />
+            </div>
 
-        <article className="contact-chip">
-          <p className="contact-chip-label">Atendimento</p>
-          <p className="contact-chip-value">Seg a Sex, 09h as 18h</p>
-        </article>
-      </div>
+            <div className="contact-form-group">
+              <select defaultValue="">
+                <option value="" disabled>
+                  Selecione uma solução
+                </option>
+                <option>Conta digital</option>
+                <option>Cobranças integradas</option>
+                <option>Segurança financeira</option>
+                <option>Soluções para empresas</option>
+              </select>
+            </div>
 
-      <div className="cta-actions">
-        <a href="mailto:contato@pluggo.com" className="button-primary">
-          Enviar briefing
-        </a>
+            <div className="contact-form-group">
+              <textarea placeholder="Sua mensagem" />
+            </div>
 
-        <a href="#home" className="button-secondary">
-          Voltar ao topo
-        </a>
+            <button type="submit" className="contact-submit">
+              Fale Com A Plug Go
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

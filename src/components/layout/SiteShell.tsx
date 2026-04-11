@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BackToTopButton } from "@/components/layout/BackToTopButton";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
@@ -11,6 +12,7 @@ export function SiteShell({ children }: SiteShellProps) {
     <div className="site-shell">
       <SiteHeader />
       {children}
+      <BackToTopButton />
       <SiteFooter />
     </div>
   );

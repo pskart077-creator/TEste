@@ -1,9 +1,19 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
+const navItems = [
+  { href: "#inicio", label: "Início" },
+  { href: "#plataforma", label: "Plataforma" },
+  { href: "#solucoes", label: "Soluções" },
+  { href: "#como-funciona", label: "Como funciona" },
+  { href: "#contato", label: "Contato" },
+];
+
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -50,13 +60,60 @@ export function SiteHeader() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      setIsScrolled(currentScrollY > 10);
+
+      if (isMenuOpen) {
+        setIsHeaderVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY <= 10) {
+        setIsHeaderVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY > lastScrollY + 4) {
+        setIsHeaderVisible(false);
+      } else if (currentScrollY < lastScrollY - 4) {
+        setIsHeaderVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="site-header-wrap site-header-home">
+    <header
+      className={`site-header-wrap site-header-home ${isHeaderVisible ? "is-visible" : "is-hidden"} ${isScrolled ? "is-scrolled" : ""}`}
+    >
       <div className="site-header">
-        <a href="#home" className="site-logo" aria-label="PlugGo Home" onClick={closeMenu}>
-          <span>Plug</span>Go
+        <a
+          href="#inicio"
+          className="site-logo"
+          aria-label="PlugGo Início"
+          onClick={closeMenu}
+        >
+          <img
+            src="/assets/img/logo/logo.svg"
+            alt="PlugGo"
+            className="site-logo-image"
+          />
         </a>
 
         <button
@@ -75,31 +132,24 @@ export function SiteHeader() {
         <nav
           id="site-nav"
           className={`site-nav ${isMenuOpen ? "is-open" : ""}`}
-          aria-label="Navegacao principal"
+          aria-label="Navegação principal"
         >
-          <a href="#home" className="site-nav-link is-active" onClick={closeMenu}>
-            Home
-          </a>
-          <a href="#sobre" className="site-nav-link" onClick={closeMenu}>
-            Sobre
-          </a>
-          <a href="#solucoes" className="site-nav-link" onClick={closeMenu}>
-            Solucoes
-          </a>
-          <a href="#processo" className="site-nav-link" onClick={closeMenu}>
-            Processo
-          </a>
-          <a href="#depoimentos" className="site-nav-link" onClick={closeMenu}>
-            Depoimentos
-          </a>
-          <a href="#faq" className="site-nav-link" onClick={closeMenu}>
-            FAQ
-          </a>
-          <a href="#contato" className="site-nav-link" onClick={closeMenu}>
-            Contato
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="site-nav-link"
+              onClick={closeMenu}
+            >
+              {item.label}
+            </a>
+          ))}
 
-          <a className="site-contact-btn site-contact-btn-mobile" href="#contato" onClick={closeMenu}>
+          <a
+            className="site-contact-btn site-contact-btn-mobile"
+            href="#contato"
+            onClick={closeMenu}
+          >
             Fale Conosco
           </a>
         </nav>

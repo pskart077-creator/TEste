@@ -1,31 +1,25 @@
-﻿export function SiteFooter() {
+﻿import { Phone, Mail, MapPin } from "lucide-react";
+
+export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer-main">
         <div className="footer-brand">
-          <a href="#home" className="footer-logo" aria-label="PlugGo Home">
+          <a href="#inicio" className="footer-logo" aria-label="PlugGo Início">
             <span>Plug</span>Go
           </a>
+
           <p className="footer-description">
             A Plug Go conecta solucoes financeiras para pessoas e empresas em
             uma experiencia mais simples, segura e funcional.
           </p>
+
           <div className="footer-socials" aria-label="Redes sociais">
-            <a href="#" aria-label="Facebook">
-              f
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              in
-            </a>
-            <a href="#" aria-label="X">
-              x
-            </a>
-            <a href="#" aria-label="Instagram">
-              ig
-            </a>
-            <a href="#" aria-label="YouTube">
-              yt
-            </a>
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="X">x</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="YouTube">yt</a>
           </div>
         </div>
 
@@ -55,10 +49,24 @@
 
         <div className="footer-contact">
           <h4>Atendimento em dias uteis das 8h as 20h (Horario de Brasilia)</h4>
-          <p>(11) 91533-3965</p>
-          <a href="mailto:contato@pluggocapital.com">Contato@Pluggocapital.Com</a>
-          <p>Av. Alameda Mamore, 503 - Alphaville</p>
-          <p>Barueri - SP, CEP 06454-040</p>
+
+          <div className="footer-contact-item">
+            <Phone size={18} strokeWidth={2} />
+            <p>(11) 91533-3965</p>
+          </div>
+
+          <div className="footer-contact-item">
+            <Mail size={18} strokeWidth={2} />
+            <a href="mailto:contato@pluggocapital.com">contato@pluggocapital.com</a>
+          </div>
+
+          <div className="footer-contact-item footer-contact-item-address">
+            <MapPin size={18} strokeWidth={2} />
+            <div>
+              <p>Av. Alameda Mamore, 503 - Alphaville</p>
+              <p>Barueri - SP, CEP 06454-040</p>
+            </div>
+          </div>
         </div>
       </div>
 

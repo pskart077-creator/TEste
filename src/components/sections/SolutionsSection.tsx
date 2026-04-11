@@ -1,45 +1,46 @@
 ﻿export function SolutionsSection() {
   return (
-    <section id="solucoes" className="content-section section-anchor">
-      <h2 className="section-title">Solucoes da Landing</h2>
-      <p className="section-subtitle">Modelo completo para apresentar valor, provar confianca e converter leads.</p>
+    <section id="solucoes" className="solutions-section section-anchor">
+      <div className="solutions-layout">
+        <div className="solutions-visual">
+          <img
+            src="/assets/img/solutions/global.svg"
+            alt="Hub financeiro conectado globalmente"
+          />
+        </div>
 
-      <div className="solutions-grid">
-        <article className="solution-card">
-          <p className="solution-tag">Infra</p>
-          <h3>Node &amp; Network Layer</h3>
-          <p>Estrutura para monitorar redes, eventos e saude de contratos em tempo real.</p>
-        </article>
+        <div className="solutions-content">
+          <p className="solutions-eyebrow">HUB FINANCEIRO PLUG GO</p>
 
-        <article className="solution-card">
-          <p className="solution-tag">Produto</p>
-          <h3>Smart Contract Studio</h3>
-          <p>Publicacao, versionamento e testes de contratos com padrao de seguranca.</p>
-        </article>
+          <h2 className="solutions-title">
+            Uma experiência financeira
+            mais conectada para pessoas e
+            empresas.
+          </h2>
 
-        <article className="solution-card">
-          <p className="solution-tag">Operacao</p>
-          <h3>Painel de Governanca</h3>
-          <p>Controle de acessos, aprovacoes e logs para operacoes distribuidas.</p>
-        </article>
+          <p className="solutions-description">
+            A Plug Go reúne soluções essenciais em uma plataforma mais simples,
+            segura e funcional. Com uma proposta pensada para o dia a dia, a
+            experiência se torna mais fluida para movimentar, receber e
+            organizar a rotina financeira com mais clareza e praticidade.
+          </p>
 
-        <article className="solution-card">
-          <p className="solution-tag">Financeiro</p>
-          <h3>Wallet &amp; Settlement</h3>
-          <p>Recebimento, conciliacao e repasse automatizado com rastreio ponta a ponta.</p>
-        </article>
+          <div className="solutions-proof">
+            <div className="solutions-proof-avatars" aria-hidden="true">
+              <span className="solutions-proof-avatar" />
+              <span className="solutions-proof-avatar" />
+              <span className="solutions-proof-avatar" />
+              <span className="solutions-proof-avatar" />
+              <span className="solutions-proof-avatar" />
+              <span className="solutions-proof-badge">50M</span>
+            </div>
 
-        <article className="solution-card">
-          <p className="solution-tag">Seguranca</p>
-          <h3>Risk Engine</h3>
-          <p>Deteccao de anomalias e politicas dinamicas para reduzir risco operacional.</p>
-        </article>
-
-        <article className="solution-card">
-          <p className="solution-tag">Dados</p>
-          <h3>Analytics On-chain</h3>
-          <p>Dashboards de uso, liquidez e comportamento para decisao orientada por dados.</p>
-        </article>
+            <p className="solutions-proof-text">
+              Uma plataforma pensada para quem busca mais praticidade,
+              segurança e controle financeiro.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

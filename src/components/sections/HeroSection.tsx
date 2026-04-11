@@ -1,6 +1,6 @@
 ﻿export function HeroSection() {
   return (
-    <section id="home" className="pluggo-hero section-anchor">
+    <section id="inicio" className="pluggo-hero section-anchor">
       <div className="pluggo-hero__bg" aria-hidden="true">
         <div className="pluggo-hero__wave pluggo-hero__wave--left" />
         <div className="pluggo-hero__wave pluggo-hero__wave--right" />
