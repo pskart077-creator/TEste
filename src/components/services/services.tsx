@@ -46,7 +46,7 @@ export default function SegmentsSection() {
               ))}
             </ul>
 
-            <Link href="/pf" className="segments-button">
+            <Link href="/para-voce" className="segments-button">
               Ver Mais
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default function SegmentsSection() {
               ))}
             </ul>
 
-            <Link href="/pj" className="segments-button">
+            <Link href="/para-sua-empresa" className="segments-button">
               Ver Mais
             </Link>
           </div>

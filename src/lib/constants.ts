@@ -11,16 +11,10 @@ export const BACK_TO_TOP_VISIBLE_OFFSET = 420;
 export const BACK_TO_TOP_FOOTER_OFFSET = 180;
 
 export const SITE_NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Serviços", href: "/servicos" },
-  { label: "Segurança", href: "/seguranca" },
-  { label: "Sobre", href: "/sobre" },
+  { label: "Inicio", href: "/" },
+  { label: "Solucoes", href: "/servicos" },
+  { label: "Segmentos", href: "/segmentos" },
+  { label: "News", href: "/news" },
+  { label: "Sobre a Plug Go", href: "/sobre" },
   { label: "Contato", href: "/contato" },
 ];
-
-export const SERVICES_SUBMENU_ITEMS: NavItem[] = [
-  { label: "Para você", href: "/para-voce" },
-  { label: "Para sua empresa", href: "/para-sua-empresa" },
-];
-
-export const SERVICES_ACTIVE_ROUTES = ["/servicos", "/pf", "/pj"] as const;

@@ -22,6 +22,8 @@ export type StaticPageSlug =
   | "sobre"
   | "contato"
   | "servicos"
+  | "segmentos"
+  | "news"
   | "seguranca"
   | "pf"
   | "pj";
@@ -69,6 +71,30 @@ export const STATIC_PAGE_SEO: Record<StaticPageSlug, PageSeo> = {
       "serviços financeiros",
       "plataforma financeira",
       "catálogo de serviços",
+    ],
+  },
+  segmentos: {
+    title: "Segmentos",
+    description:
+      "Conheça os segmentos da Plug Go e veja como as soluções se adaptam para pessoa física e para empresas.",
+    path: "/segmentos",
+    keywords: [
+      ...COMMON_KEYWORDS,
+      "segmentos",
+      "para voce",
+      "para sua empresa",
+    ],
+  },
+  news: {
+    title: "News",
+    description:
+      "Acompanhe as novidades da Plug Go com atualizacoes sobre tecnologia, seguranca e mercado financeiro.",
+    path: "/news",
+    keywords: [
+      ...COMMON_KEYWORDS,
+      "news",
+      "novidades plug go",
+      "conteudo financeiro",
     ],
   },
   seguranca: {
@@ -169,3 +195,5 @@ export function buildDetailMetadata(
     },
   };
 }
+
+
