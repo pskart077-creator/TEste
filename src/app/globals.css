@@ -3856,3 +3856,219 @@ img {
     padding: 0 24px;
   }
 }
+
+/* =====================================================================================
+   SEGMENTS SECTION
+===================================================================================== */
+
+.segments-section {
+  position: relative;
+  padding: 120px 0;
+  background: var(--hero-bg);
+  overflow: hidden;
+}
+
+.segments-container {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.segments-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 56px;
+  align-items: center;
+}
+
+/* =====================================================================================
+   VISUAL
+===================================================================================== */
+
+.segments-visual {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.segments-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =====================================================================================
+   CONTENT
+===================================================================================== */
+
+.segments-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.segments-title {
+  margin: 0 0 22px;
+  font-size: 42px;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.segments-description {
+  margin: 0 0 26px;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* =====================================================================================
+   LIST
+===================================================================================== */
+
+.segments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 0 34px;
+  padding: 0;
+  list-style: none;
+}
+
+.segments-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.segments-list-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #39b85a;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+/* =====================================================================================
+   BUTTON
+===================================================================================== */
+
+.segments-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: #39b85a;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.28s ease,
+    background 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.segments-button:hover {
+  transform: translateY(-2px);
+  background: #42c464;
+  box-shadow: 0 14px 32px rgba(57, 184, 90, 0.22);
+}
+
+/* =====================================================================================
+   RESPONSIVO
+===================================================================================== */
+
+@media (max-width: 1199px) {
+  .segments-grid {
+    gap: 28px 32px;
+  }
+
+  .segments-visual {
+    height: 300px;
+  }
+
+  .segments-description {
+    font-size: 16px;
+  }
+
+  .segments-list-item {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .segments-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .segments-content {
+    order: initial;
+  }
+
+  .segments-visual {
+    height: 320px;
+  }
+}
+
+@media (max-width: 767px) {
+  .segments-section {
+    padding: 90px 0;
+  }
+
+  .segments-container {
+    width: min(100%, calc(100% - 24px));
+  }
+
+  .segments-title {
+    margin-bottom: 18px;
+    font-size: clamp(30px, 9vw, 44px);
+  }
+
+  .segments-description {
+    margin-bottom: 22px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .segments-list {
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .segments-list-item {
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .segments-button {
+    min-width: 128px;
+    min-height: 50px;
+    font-size: 15px;
+    padding: 0 24px;
+  }
+
+  .segments-visual {
+    height: 220px;
+    border-radius: 18px;
+  }
+}
