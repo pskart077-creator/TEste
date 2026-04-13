@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type FeatureSplitSectionProps = {
@@ -42,10 +43,12 @@ export default function FeatureSplitSection({
 
           <div className="feature-split-visual">
             <div className="feature-split-image-wrap">
-              <img
+              <Image
                 src={imageSrc}
                 alt={imageAlt}
                 className="feature-split-image"
+                fill
+                sizes="(max-width: 991px) 100vw, 560px"
               />
             </div>
           </div>

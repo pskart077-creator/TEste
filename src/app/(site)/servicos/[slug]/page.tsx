@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import SlugDetails from "@/components/details/SlugDetails";
 import SiteFooter from "@/components/layout/footer/SiteFooter";
-import ServiceDetails from "@/components/pj/ServiceDetails";
 import { buildServiceMetadata } from "@/lib/seo";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 
@@ -39,7 +39,12 @@ export default async function ServiceDetailsPage(
 
   return (
     <>
-      <ServiceDetails service={service} />
+      <SlugDetails
+        detail={service}
+        backHref="/servicos"
+        backLabel="Voltar para servicos"
+        eyebrow="DETALHES DO SERVICO"
+      />
       <SiteFooter />
     </>
   );

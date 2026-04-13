@@ -1,11 +1,15 @@
+import Image from "next/image";
+
 export default function Solutions() {
   return (
     <section id="solucoes" className="solutions-section section-anchor">
       <div className="solutions-layout">
         <div className="solutions-visual">
-          <img
+          <Image
             src="/assets/img/solutions/global.svg"
             alt="Hub financeiro conectado globalmente"
+            width={779}
+            height={744}
           />
         </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -153,10 +154,13 @@ export default function SiteHeader() {
           aria-label="PlugGo Inicio"
           onClick={closeMenu}
         >
-          <img
+          <Image
             src="/assets/img/logo/logo.svg"
             alt="PlugGo"
             className="site-logo-image"
+            width={90}
+            height={33}
+            priority
           />
         </Link>
 
