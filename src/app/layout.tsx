@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { HOME_SEO, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const bodyFont = Poppins({
@@ -17,28 +18,17 @@ const displayFont = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pluggocapital.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Plug Go | Hub financeiro para pessoas e empresas",
-    template: "%s | Plug Go",
+    default: HOME_SEO.title,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "A Plug Go conecta soluções financeiras para pessoas e empresas em uma experiência mais simples, segura e funcional.",
-  keywords: [
-    "Plug Go",
-    "hub financeiro",
-    "conta digital",
-    "cobranças",
-    "seguros",
-    "cripto",
-    "soluções financeiras",
-    "plataforma financeira",
-    "pessoas e empresas",
-  ],
-  applicationName: "Plug Go",
-  authors: [{ name: "Plug Go" }],
-  creator: "Plug Go",
-  publisher: "Plug Go",
+  description: HOME_SEO.description,
+  keywords: HOME_SEO.keywords,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   robots: {
     index: true,
     follow: true,
@@ -46,17 +36,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://pluggocapital.com",
-    siteName: "Plug Go",
-    title: "Plug Go | Hub financeiro para pessoas e empresas",
-    description:
-      "A Plug Go conecta soluções financeiras para pessoas e empresas em uma experiência mais simples, segura e funcional.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${HOME_SEO.title} | ${SITE_NAME}`,
+    description: HOME_SEO.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plug Go | Hub financeiro para pessoas e empresas",
-    description:
-      "A Plug Go conecta soluções financeiras para pessoas e empresas em uma experiência mais simples, segura e funcional.",
+    title: `${HOME_SEO.title} | ${SITE_NAME}`,
+    description: HOME_SEO.description,
   },
 };
 

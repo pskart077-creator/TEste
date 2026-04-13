@@ -1,24 +1,25 @@
-﻿import type { Metadata } from "next";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { FinancialShowcaseSection } from "@/components/sections/FinancialShowcaseSection";
-import { SolutionsSection } from "@/components/sections/SolutionsSection";
+import type { Metadata } from "next";
+import About from "@/components/about/About";
+import Contact from "@/components/contato/Contact";
+import Hero from "@/components/hero/Hero";
+import SiteFooter from "@/components/layout/footer/SiteFooter";
+import Process from "@/components/process/Process";
+import Showcase from "@/components/showcase/Showcase";
+import Solutions from "@/components/solutions/Solutions";
+import { HOME_SEO, buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Home",
-};
+export const metadata: Metadata = buildPageMetadata(HOME_SEO);
 
 export default function HomePage() {
   return (
-    <main className="site-main site-main-home">
-      <HeroSection />
-      <FinancialShowcaseSection />
-      <AboutSection />
-      <SolutionsSection />
-      <ProcessSection />
-      <ContactSection />
-    </main>
+    <>
+      <Hero />
+      <Showcase />
+      <About />
+      <Solutions />
+      <Process />
+      <Contact />
+      <SiteFooter />
+    </>
   );
 }

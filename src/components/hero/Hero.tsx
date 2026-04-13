@@ -1,4 +1,6 @@
-﻿export function HeroSection() {
+import Link from "next/link";
+
+export default function Hero() {
   return (
     <section id="inicio" className="pluggo-hero section-anchor">
       <div className="pluggo-hero__bg" aria-hidden="true">
@@ -18,15 +20,16 @@
           </h1>
 
           <p className="pluggo-hero__description">
-            A PlugGo conecta soluções essenciais para pessoas e empresas em uma experiência
-            mais simples, segura e inteligente. Centralize sua rotina financeira com mais
-            praticidade, clareza e controle no dia a dia.
+            A PlugGo conecta soluções essenciais para pessoas e empresas em uma
+            experiência mais simples, segura e inteligente. Centralize sua
+            rotina financeira com mais praticidade, clareza e controle no dia a
+            dia.
           </p>
 
           <div className="pluggo-hero__actions">
-            <a href="#contato" className="pluggo-hero__button">
+            <Link href="/contato" className="pluggo-hero__button">
               Fale Conosco
-            </a>
+            </Link>
           </div>
         </div>
       </div>

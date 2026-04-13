@@ -1,8 +1,10 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const showcaseTabs = [
   {
@@ -56,7 +58,7 @@ const showcaseStats = [
   { value: "24/7", label: "mais praticidade" },
 ];
 
-export function FinancialShowcaseSection() {
+export default function Showcase() {
   const [activeTab, setActiveTab] = useState(showcaseTabs[0].id);
 
   const activeContent =
@@ -90,9 +92,10 @@ export function FinancialShowcaseSection() {
                   type="button"
                   role="tab"
                   aria-selected={activeTab === tab.id}
-                  className={`financial-showcase-tab ${
-                    activeTab === tab.id ? "is-active" : ""
-                  }`}
+                  className={cn(
+                    "financial-showcase-tab",
+                    activeTab === tab.id && "is-active",
+                  )}
                   onClick={() => setActiveTab(tab.id)}
                 >
                   {tab.label}
@@ -113,9 +116,9 @@ export function FinancialShowcaseSection() {
               ))}
             </div>
 
-            <a href="#contato" className="financial-showcase-button">
+            <Link href="/contato" className="financial-showcase-button">
               Fale Conosco
-            </a>
+            </Link>
           </div>
         </div>
 

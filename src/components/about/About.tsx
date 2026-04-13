@@ -1,4 +1,4 @@
-﻿import {
+import {
   Wallet,
   ReceiptText,
   ShieldCheck,
@@ -46,7 +46,7 @@ const aboutItems = [
   },
 ];
 
-export function AboutSection() {
+export default function About() {
   return (
     <section id="sobre" className="about-section section-anchor">
       <div className="about-section-header">

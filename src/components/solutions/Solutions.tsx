@@ -1,4 +1,4 @@
-﻿export function SolutionsSection() {
+export default function Solutions() {
   return (
     <section id="solucoes" className="solutions-section section-anchor">
       <div className="solutions-layout">
@@ -13,9 +13,7 @@
           <p className="solutions-eyebrow">HUB FINANCEIRO PLUG GO</p>
 
           <h2 className="solutions-title">
-            Uma experiência financeira
-            mais conectada para pessoas e
-            empresas.
+            Uma experiência financeira mais conectada para pessoas e empresas.
           </h2>
 
           <p className="solutions-description">

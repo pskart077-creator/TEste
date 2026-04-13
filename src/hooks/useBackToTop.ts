@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronUp } from "lucide-react";
+import {
+  BACK_TO_TOP_FOOTER_OFFSET,
+  BACK_TO_TOP_VISIBLE_OFFSET,
+} from "@/lib/constants";
+import type { BackToTopController } from "@/types";
 
-export function BackToTopButton() {
+export function useBackToTop(): BackToTopController {
   const [isVisible, setIsVisible] = useState(false);
   const [isNearFooter, setIsNearFooter] = useState(false);
 
@@ -13,8 +17,10 @@ export function BackToTopButton() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      setIsVisible(scrollY > 420);
-      setIsNearFooter(scrollY + windowHeight > documentHeight - 180);
+      setIsVisible(scrollY > BACK_TO_TOP_VISIBLE_OFFSET);
+      setIsNearFooter(
+        scrollY + windowHeight > documentHeight - BACK_TO_TOP_FOOTER_OFFSET,
+      );
     };
 
     handleScroll();
@@ -29,14 +35,9 @@ export function BackToTopButton() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  return (
-    <button
-      type="button"
-      className={`back-to-top-btn ${isVisible ? "is-visible" : ""} ${isNearFooter ? "is-near-footer" : ""}`}
-      aria-label="Voltar ao topo"
-      onClick={scrollToTop}
-    >
-      <ChevronUp size={18} strokeWidth={2.5} />
-    </button>
-  );
+  return {
+    isVisible,
+    isNearFooter,
+    scrollToTop,
+  };
 }

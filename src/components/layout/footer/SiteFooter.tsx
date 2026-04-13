@@ -1,13 +1,14 @@
-﻿import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 
-export function SiteFooter() {
+export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer-main">
         <div className="footer-brand">
-          <a href="#inicio" className="footer-logo" aria-label="PlugGo Início">
+          <Link href="/" className="footer-logo" aria-label="PlugGo Inicio">
             <span>Plug</span>Go
-          </a>
+          </Link>
 
           <p className="footer-description">
             A Plug Go conecta solucoes financeiras para pessoas e empresas em
@@ -15,28 +16,38 @@ export function SiteFooter() {
           </p>
 
           <div className="footer-socials" aria-label="Redes sociais">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="X">x</a>
-            <a href="#" aria-label="Instagram">ig</a>
-            <a href="#" aria-label="YouTube">yt</a>
+            <a href="#" aria-label="Facebook">
+              f
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              in
+            </a>
+            <a href="#" aria-label="X">
+              x
+            </a>
+            <a href="#" aria-label="Instagram">
+              ig
+            </a>
+            <a href="#" aria-label="YouTube">
+              yt
+            </a>
           </div>
         </div>
 
         <nav className="footer-column" aria-label="Solucoes">
           <h4>Solucoes</h4>
-          <a href="#solucoes">Conta digital</a>
-          <a href="#solucoes">Cobrancas</a>
-          <a href="#solucoes">Seguros</a>
-          <a href="#solucoes">Cripto</a>
+          <Link href="/servicos/conta-digital">Conta digital</Link>
+          <Link href="/servicos/cobrancas-integradas">Cobrancas</Link>
+          <Link href="/servicos/seguranca-financeira">Seguros</Link>
+          <Link href="/servicos/cripto">Cripto</Link>
         </nav>
 
         <nav className="footer-column" aria-label="Empresa">
           <h4>Empresa</h4>
-          <a href="#sobre">Sobre</a>
-          <a href="#sobre">Para Voce</a>
-          <a href="#sobre">Para Empresas</a>
-          <a href="#contato">Contato</a>
+          <Link href="/sobre">Sobre</Link>
+          <Link href="/sobre">Para Voce</Link>
+          <Link href="/sobre">Para Empresas</Link>
+          <Link href="/contato">Contato</Link>
         </nav>
 
         <nav className="footer-column" aria-label="Suporte">
@@ -57,7 +68,9 @@ export function SiteFooter() {
 
           <div className="footer-contact-item">
             <Mail size={18} strokeWidth={2} />
-            <a href="mailto:contato@pluggocapital.com">contato@pluggocapital.com</a>
+            <a href="mailto:contato@pluggocapital.com">
+              contato@pluggocapital.com
+            </a>
           </div>
 
           <div className="footer-contact-item footer-contact-item-address">
@@ -72,11 +85,12 @@ export function SiteFooter() {
 
       <div className="footer-legal">
         <p>
-          A PLUGGO CAPITAL - SYFRA PAYMENTS SOLUCOES EM PAGAMENTOS LTDA, inscrita
-          no CNPJ n. 22.605.209/0001-11, atua na intermediacao de servicos
-          financeiros, nos termos da regulamentacao do Banco Central do Brasil.
-          Todos os produtos e servicos financeiros sao fornecidos por instituicoes
-          financeiras parceiras autorizadas pelo Banco Central.
+          A PLUGGO CAPITAL - SYFRA PAYMENTS SOLUCOES EM PAGAMENTOS LTDA,
+          inscrita no CNPJ n. 22.605.209/0001-11, atua na intermediacao de
+          servicos financeiros, nos termos da regulamentacao do Banco Central
+          do Brasil. Todos os produtos e servicos financeiros sao fornecidos
+          por instituicoes financeiras parceiras autorizadas pelo Banco
+          Central.
         </p>
       </div>
 
