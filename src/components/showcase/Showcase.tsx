@@ -14,7 +14,7 @@ const showcaseTabs = [
     description:
       "A Plug Go conecta soluções financeiras para pessoas e empresas em uma experiência mais simples, segura e funcional.",
     image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1400&q=80",
+      "/assets/img/home/img-03.jpg",
     points: [
       "Gestão inteligente da rotina financeira",
       "Mais clareza para movimentar e receber",
@@ -28,7 +28,7 @@ const showcaseTabs = [
     description:
       "Nossa missão é simplificar a rotina financeira com uma plataforma moderna, organizada e eficiente para pessoas e empresas.",
     image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80",
+      "/assets/img/home/img-05.png",
     points: [
       "Mais praticidade no dia a dia",
       "Operação centralizada",

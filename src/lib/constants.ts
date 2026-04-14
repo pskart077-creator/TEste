@@ -11,9 +11,8 @@ export const BACK_TO_TOP_VISIBLE_OFFSET = 420;
 export const BACK_TO_TOP_FOOTER_OFFSET = 180;
 
 export const SITE_NAV_ITEMS: NavItem[] = [
-  { label: "Inicio", href: "/" },
-  { label: "Solucoes", href: "/servicos" },
-  { label: "Segmentos", href: "/segmentos" },
+  { label: "Home", href: "/" },
+  { label: "Soluções", href: "/solucoes" },
   { label: "News", href: "/news" },
   { label: "Sobre a Plug Go", href: "/sobre" },
   { label: "Contato", href: "/contato" },

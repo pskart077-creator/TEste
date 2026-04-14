@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Check } from "lucide-react";
+import Image from "next/image";
 
 const pfItems = [
   "Abertura de conta e acesso simplificado",
@@ -19,10 +22,12 @@ export default function SegmentsSection() {
       <div className="segments-container">
         <div className="segments-grid">
           <div className="segments-visual">
-            <img
-              src="/assets/img/segments/pf.jpg"
+            <Image
+              src="/assets/img/home/img-03.jpg"
               alt="Plug Go para você"
               className="segments-image"
+              width={1920}
+              height={1080}
             />
           </div>
 
@@ -77,10 +82,12 @@ export default function SegmentsSection() {
           </div>
 
           <div className="segments-visual">
-            <img
-              src="/assets/img/segments/pj.jpg"
+            <Image
+              src="/assets/img/home/img-06.png"
               alt="Plug Go para sua empresa"
               className="segments-image"
+              width={1688}
+              height={1080}
             />
           </div>
         </div>

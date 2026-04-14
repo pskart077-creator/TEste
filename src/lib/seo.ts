@@ -21,12 +21,15 @@ type PageSeo = {
 export type StaticPageSlug =
   | "sobre"
   | "contato"
-  | "servicos"
+  | "solucoes"
   | "segmentos"
   | "news"
   | "seguranca"
   | "pf"
-  | "pj";
+  | "pj"
+  | "termsOfServices"
+  | "privacyPolicy"
+  | "cookiePolicy";
 
 export const HOME_SEO: PageSeo = {
   title: "Hub financeiro para pessoas e empresas",
@@ -61,11 +64,11 @@ export const STATIC_PAGE_SEO: Record<StaticPageSlug, PageSeo> = {
       "atendimento financeiro",
     ],
   },
-  servicos: {
-    title: "Serviços",
+  solucoes: {
+    title: "Soluções",
     description:
       "Explore os serviços da Plug Go e veja como nossas soluções atendem pessoas e empresas com mais praticidade, segurança e eficiência.",
-    path: "/servicos",
+    path: "/solucoes",
     keywords: [
       ...COMMON_KEYWORDS,
       "serviços financeiros",
@@ -135,9 +138,34 @@ export const STATIC_PAGE_SEO: Record<StaticPageSlug, PageSeo> = {
       "serviços para empresas",
     ],
   },
+  termsOfServices: {
+    title: "Termos de Serviço",
+    description:
+      "Consulte os termos que regem o uso dos canais e servicos da Plug Go.",
+    path: "/terms-of-services",
+    keywords: [...COMMON_KEYWORDS, "termos de uso", "terms of services"],
+  },
+  privacyPolicy: {
+    title: "Política de Privacidade",
+    description:
+      "Entenda como a Plug Go coleta, utiliza e protege dados pessoais.",
+    path: "/privacy-policy",
+    keywords: [...COMMON_KEYWORDS, "politica de privacidade", "privacy policy"],
+  },
+  cookiePolicy: {
+    title: "Política de Cookies",
+    description:
+      "Saiba como a Plug Go utiliza cookies e como voce pode gerenciar preferencias.",
+    path: "/cookie-policy",
+    keywords: [...COMMON_KEYWORDS, "politica de cookies", "cookie policy"],
+  },
 };
 
 export function buildPageMetadata(pageSeo: PageSeo): Metadata {
+  if (!pageSeo) {
+    return buildPageMetadata(HOME_SEO);
+  }
+
   const absoluteUrl = new URL(pageSeo.path, SITE_URL).toString();
 
   return {
@@ -164,7 +192,7 @@ export function buildPageMetadata(pageSeo: PageSeo): Metadata {
 }
 
 export function buildServiceMetadata(service: Service): Metadata {
-  return buildDetailMetadata(service, `/servicos/${service.slug}`);
+  return buildDetailMetadata(service, `/solucoes/${service.slug}`);
 }
 
 export function buildDetailMetadata(
@@ -195,5 +223,3 @@ export function buildDetailMetadata(
     },
   };
 }
-
-

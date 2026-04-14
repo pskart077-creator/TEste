@@ -1,0 +1,89 @@
+.pluggo-news-editor {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(5, 9, 18, 0.85);
+  overflow: hidden;
+}
+
+.pluggo-news-editor__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pluggo-news-editor__toolbar button {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-radius: 8px;
+  min-height: 32px;
+  padding: 0 0.55rem;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.pluggo-news-editor__blocks {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.8rem;
+}
+
+.pluggo-news-editor__block {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.65rem;
+}
+
+.pluggo-news-editor__block-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pluggo-news-editor__block-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.pluggo-news-editor__block-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-radius: 7px;
+  min-height: 24px;
+  min-width: 24px;
+  cursor: pointer;
+}
+
+.pluggo-news-editor textarea,
+.pluggo-news-editor input,
+.pluggo-news-editor select {
+  width: 100%;
+  min-height: 36px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8faff;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.86rem;
+}
+
+.pluggo-news-editor textarea {
+  min-height: 94px;
+}
+
+.pluggo-news-editor__empty {
+  padding: 0.9rem;
+  color: rgba(255, 255, 255, 0.66);
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+}

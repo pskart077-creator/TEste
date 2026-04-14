@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function SiteFooter() {
   return (
@@ -7,7 +8,14 @@ export default function SiteFooter() {
       <div className="site-footer-main">
         <div className="footer-brand">
           <Link href="/" className="footer-logo" aria-label="PlugGo Inicio">
-            <span>Plug</span>Go
+            <Image
+              src="/assets/img/logo/logo.svg"
+              alt="PlugGo"
+              className="site-logo-image"
+              width={90}
+              height={33}
+              priority
+            />
           </Link>
 
           <p className="footer-description">
@@ -35,9 +43,9 @@ export default function SiteFooter() {
         </div>
 
         <nav className="footer-column" aria-label="Solucoes">
-          <h4>Solucoes</h4>
+          <h4>Soluções</h4>
           <Link href="/servicos/conta-digital">Conta digital</Link>
-          <Link href="/servicos/cobrancas-integradas">Cobrancas</Link>
+          <Link href="/servicos/cobrancas-integradas">Cobranças</Link>
           <Link href="/servicos/seguranca-financeira">Seguros</Link>
           <Link href="/servicos/cripto">Cripto</Link>
         </nav>
@@ -53,9 +61,9 @@ export default function SiteFooter() {
         <nav className="footer-column" aria-label="Suporte">
           <h4>Suporte</h4>
           <a href="#faq">Central de ajuda</a>
-          <a href="#faq">Seguranca</a>
-          <a href="#faq">Politica de privacidade</a>
-          <a href="#faq">Termos de uso</a>
+          <Link href="/seguranca">Seguranca</Link>
+          <Link href="/privacy-policy">Política de Privacidade</Link>
+          <Link href="/terms-of-services">Termos de Serviço</Link>
         </nav>
 
         <div className="footer-contact">
@@ -98,9 +106,9 @@ export default function SiteFooter() {
         <p>&copy; Plug Go - Todos os direitos reservados</p>
 
         <div className="site-footer-links">
-          <a href="#faq">Terms Of Services</a>
-          <a href="#faq">Privacy Policy</a>
-          <a href="#faq">Cookie Policy</a>
+          <Link href="/terms-of-services">Termos de Serviço</Link>
+          <Link href="/privacy-policy">Política de Privacidade</Link>
+          <Link href="/cookie-policy">Política de Cookies</Link>
         </div>
       </div>
     </footer>

@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  EDITOR
+  AUTHOR
+}
+
+enum NewsStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum NewsAuditAction {
+  LOGIN
+  LOGOUT
+  LOGIN_FAILED
+  CREATE
+  UPDATE
+  DELETE
+  PUBLISH
+  STATUS_CHANGE
+  UPLOAD
+  DUPLICATE
+  CATEGORY_CREATE
+  CATEGORY_UPDATE
+  CATEGORY_DELETE
+  TAG_CREATE
+  TAG_UPDATE
+  TAG_DELETE
+}
+
+model Role {
+  id        String   @id @default(cuid()) @map("id")
+  key       UserRole @unique @map("key")
+  name      String   @map("name")
+  users     User[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("roles")
+}
+
+model User {
+  id            String         @id @default(cuid()) @map("id")
+  email         String         @unique @map("email")
+  displayName   String         @map("display_name")
+  passwordHash  String         @map("password_hash")
+  roleId        String         @map("role_id")
+  role          Role           @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  isActive      Boolean        @default(true) @map("is_active")
+  posts         NewsPost[]     @relation("NewsAuthor")
+  sessions      AdminSession[]
+  uploadedAssets NewsAsset[]   @relation("AssetUploader")
+  auditLogs     NewsAuditLog[] @relation("AuditActor")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  @@index([roleId])
+  @@map("users")
+}
+
+model AdminSession {
+  id        String   @id @default(cuid()) @map("id")
+  tokenHash String   @unique @map("token_hash")
+  csrfToken String   @map("csrf_token")
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  expiresAt DateTime @map("expires_at")
+  lastSeenAt DateTime @default(now()) @map("last_seen_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  revokedAt DateTime? @map("revoked_at")
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("admin_sessions")
+}
+
+model NewsCategory {
+  id            String     @id @default(cuid()) @map("id")
+  name          String     @unique @map("name")
+  slug          String     @unique @map("slug")
+  description   String?    @map("description")
+  color         String?    @map("color")
+  allowIndexing Boolean    @default(true) @map("allow_indexing")
+  posts         NewsPost[]
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+  deletedAt     DateTime?  @map("deleted_at")
+
+  @@index([deletedAt])
+  @@map("news_categories")
+}
+
+model NewsTag {
+  id        String       @id @default(cuid()) @map("id")
+  name      String       @unique @map("name")
+  slug      String       @unique @map("slug")
+  posts     NewsPostTag[]
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+  deletedAt DateTime?    @map("deleted_at")
+
+  @@index([deletedAt])
+  @@map("news_tags")
+}
+
+model NewsPost {
+  id                 String        @id @default(cuid()) @map("id")
+  title              String        @map("title")
+  slug               String        @unique @map("slug")
+  excerpt            String        @map("excerpt")
+  content            Json          @map("content")
+  coverImageUrl      String?       @map("cover_image_url")
+  coverImageAlt      String?       @map("cover_image_alt")
+  categoryId         String        @map("category_id")
+  category           NewsCategory  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  authorId           String        @map("author_id")
+  author             User          @relation("NewsAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+  status             NewsStatus    @default(DRAFT) @map("status")
+  publishedAt        DateTime?     @map("published_at")
+  scheduledAt        DateTime?     @map("scheduled_at")
+  readingTime        Int           @default(1) @map("reading_time")
+  featured           Boolean       @default(false) @map("featured")
+  highlightOnHome    Boolean       @default(false) @map("highlight_on_home")
+  canonicalUrl       String?       @map("canonical_url")
+  allowIndexing      Boolean       @default(true) @map("allow_indexing")
+  seoTitle           String?       @map("seo_title")
+  seoDescription     String?       @map("seo_description")
+  seoKeywords        String?       @map("seo_keywords")
+  ogTitle            String?       @map("og_title")
+  ogDescription      String?       @map("og_description")
+  ogImage            String?       @map("og_image")
+  twitterTitle       String?       @map("twitter_title")
+  twitterDescription String?       @map("twitter_description")
+  ctaTitle           String?       @map("cta_title")
+  ctaDescription     String?       @map("cta_description")
+  ctaButtonLabel     String?       @map("cta_button_label")
+  ctaButtonUrl       String?       @map("cta_button_url")
+  tags               NewsPostTag[]
+  assets             NewsAsset[]
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+  deletedAt          DateTime?     @map("deleted_at")
+
+  @@index([status, publishedAt])
+  @@index([featured])
+  @@index([categoryId])
+  @@index([authorId])
+  @@index([deletedAt])
+  @@index([scheduledAt])
+  @@map("news_posts")
+}
+
+model NewsPostTag {
+  id      String   @id @default(cuid()) @map("id")
+  postId  String   @map("post_id")
+  post    NewsPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tagId   String   @map("tag_id")
+  tag     NewsTag  @relation(fields: [tagId], references: [id], onDelete: Restrict)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([postId, tagId])
+  @@index([tagId])
+  @@map("news_post_tags")
+}
+
+model NewsAsset {
+  id           String    @id @default(cuid()) @map("id")
+  postId       String?   @map("post_id")
+  post         NewsPost? @relation(fields: [postId], references: [id], onDelete: SetNull)
+  uploadedById String    @map("uploaded_by_id")
+  uploadedBy   User      @relation("AssetUploader", fields: [uploadedById], references: [id], onDelete: Restrict)
+  kind         String    @default("image") @map("kind")
+  fileName     String    @map("file_name")
+  extension    String    @map("extension")
+  mimeType     String    @map("mime_type")
+  sizeBytes    Int       @map("size_bytes")
+  width        Int?      @map("width")
+  height       Int?      @map("height")
+  checksum     String    @map("checksum")
+  storagePath  String    @map("storage_path")
+  publicUrl    String    @map("public_url")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@index([postId])
+  @@index([uploadedById])
+  @@map("news_assets")
+}
+
+model NewsAuditLog {
+  id          String          @id @default(cuid()) @map("id")
+  action      NewsAuditAction @map("action")
+  actorId     String?         @map("actor_id")
+  actor       User?           @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+  entityType  String          @map("entity_type")
+  entityId    String?         @map("entity_id")
+  description String?         @map("description")
+  metadata    Json?           @map("metadata")
+  ipAddress   String?         @map("ip_address")
+  userAgent   String?         @map("user_agent")
+  createdAt   DateTime        @default(now()) @map("created_at")
+
+  @@index([action])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@map("news_audit_logs")
+}

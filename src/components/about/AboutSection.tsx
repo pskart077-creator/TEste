@@ -61,7 +61,7 @@ export default function AboutSection() {
           <div className="about-crypto-visual">
             <div className="about-crypto-card">
               <Image
-                src="/assets/img/about/about-pluggo.jpg"
+                src="/assets/img/about/img-01.png"
                 alt="PlugGo tecnologia e soluções digitais"
                 fill
                 className="about-crypto-card__image"

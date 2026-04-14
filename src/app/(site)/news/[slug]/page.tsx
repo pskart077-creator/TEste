@@ -1,48 +1,70 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SlugDetails from "@/components/details/SlugDetails";
+import Contact from "@/components/contato/Contact";
 import SiteFooter from "@/components/layout/footer/SiteFooter";
-import { NEWS_ITEMS, getNewsBySlug } from "@/lib/news";
-import { buildDetailMetadata } from "@/lib/seo";
+import NewsPublicDetail from "@/components/news/public/NewsPublicDetail";
+import {
+  buildNewsArticleJsonLd,
+  buildNewsBreadcrumbJsonLd,
+  buildNewsPostMetadata,
+} from "@/lib/news/seo";
+import { getPublicNewsBySlug, getRecentPublicNews, getRelatedPublicNews } from "@/lib/news/queries";
 
-export function generateStaticParams() {
-  return NEWS_ITEMS.map((item) => ({
-    slug: item.slug,
-  }));
-}
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
-export async function generateMetadata(
-  props: PageProps<"/news/[slug]">,
-): Promise<Metadata> {
-  const { slug } = await props.params;
-  const item = getNewsBySlug(slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPublicNewsBySlug(slug);
 
-  if (!item) {
+  if (!post) {
     return {
-      title: "Conteudo nao encontrado",
-      description: "O conteudo solicitado nao foi encontrado.",
+      title: "Noticia nao encontrada",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  return buildDetailMetadata(item, `/news/${item.slug}`);
+  return buildNewsPostMetadata(post);
 }
 
-export default async function NewsSlugPage(props: PageProps<"/news/[slug]">) {
-  const { slug } = await props.params;
-  const item = getNewsBySlug(slug);
+export default async function NewsSlugPage({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPublicNewsBySlug(slug);
 
-  if (!item) {
+  if (!post) {
     notFound();
   }
 
+  const related = await getRelatedPublicNews(post.id, post.category.id, 3);
+  const recent = await getRecentPublicNews({
+    excludePostIds: [post.id, ...related.map((item) => item.id)],
+    take: 3,
+  });
+  const articleSchema = buildNewsArticleJsonLd(post);
+  const breadcrumbSchema = buildNewsBreadcrumbJsonLd(post);
+
   return (
     <>
-      <SlugDetails
-        detail={item}
-        backHref="/news"
-        backLabel="Voltar para news"
-        eyebrow="DETALHES DA NEWS"
+      <NewsPublicDetail post={post} related={related} recent={recent} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+
+      <Contact />
       <SiteFooter />
     </>
   );

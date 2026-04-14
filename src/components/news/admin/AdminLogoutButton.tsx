@@ -1,0 +1,58 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+
+function readCookie(name: string) {
+  if (typeof document === "undefined") {
+    return "";
+  }
+
+  const segments = document.cookie.split(";").map((segment) => segment.trim());
+  for (const segment of segments) {
+    if (!segment.startsWith(`${name}=`)) {
+      continue;
+    }
+    return decodeURIComponent(segment.slice(name.length + 1));
+  }
+  return "";
+}
+
+export default function AdminLogoutButton() {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+
+  const handleLogout = () => {
+    startTransition(async () => {
+      setError(null);
+      const csrf = readCookie("pluggo_admin_csrf");
+
+      const response = await fetch("/api/admin/auth/logout", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-csrf-token": csrf,
+        },
+        body: JSON.stringify({}),
+      });
+
+      if (!response.ok) {
+        setError("Nao foi possivel encerrar a sessao.");
+        return;
+      }
+
+      router.push("/admin/login");
+      router.refresh();
+    });
+  };
+
+  return (
+    <div>
+      <button type="button" className="pluggo-news-admin-button is-muted" onClick={handleLogout}>
+        {isPending ? "Saindo..." : "Sair"}
+      </button>
+      {error ? <p className="pluggo-news-admin-error">{error}</p> : null}
+    </div>
+  );
+}

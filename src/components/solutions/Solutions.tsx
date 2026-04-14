@@ -1,6 +1,14 @@
 import Image from "next/image";
 
 export default function Solutions() {
+  const proofAvatarImages = [
+    "/assets/img/solutions/people/people-01.png",
+    "/assets/img/solutions/people/people-02.png",
+    "/assets/img/solutions/people/people-03.png",
+    "/assets/img/solutions/people/people-04.png",
+    "/assets/img/solutions/people/people-05.png",
+  ];
+
   return (
     <section id="solucoes" className="solutions-section section-anchor">
       <div className="solutions-layout">
@@ -29,11 +37,16 @@ export default function Solutions() {
 
           <div className="solutions-proof">
             <div className="solutions-proof-avatars" aria-hidden="true">
-              <span className="solutions-proof-avatar" />
-              <span className="solutions-proof-avatar" />
-              <span className="solutions-proof-avatar" />
-              <span className="solutions-proof-avatar" />
-              <span className="solutions-proof-avatar" />
+              {proofAvatarImages.map((avatarSrc) => (
+                <Image
+                  key={avatarSrc}
+                  className="solutions-proof-avatar"
+                  src={avatarSrc}
+                  alt=""
+                  width={48}
+                  height={48}
+                />
+              ))}
               <span className="solutions-proof-badge">50M</span>
             </div>
 

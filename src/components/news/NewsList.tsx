@@ -1,74 +1,56 @@
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
-import { getNewsItems, getRecentNews } from "@/lib/news";
+import "@/styles/news/news-public.css";
+import "@/styles/news/news-components.css";
+import NewsCard from "@/components/news/public/NewsCard";
+import { listPublicNews } from "@/lib/news/queries";
 
 type NewsListProps = {
   limit?: number;
 };
 
-export default function NewsList({ limit = 3 }: NewsListProps) {
-  const items =
-    typeof limit === "number" ? getRecentNews(limit) : getNewsItems();
+export default async function NewsList({ limit = 3 }: NewsListProps) {
+  const result = await listPublicNews({
+    page: 1,
+    pageSize: Math.max(1, Math.min(6, limit)),
+    search: "",
+    category: "",
+    tag: "",
+    featuredOnly: false,
+  });
 
   return (
-    <section className="news-section section-anchor">
-      <div className="news-container">
-        <div className="news-header">
-          <div className="news-heading">
-            <h2 className="news-title">
-              Uma experiência financeira
-              <br />
-              mais simples, conectada e
-              <br />
-              funcional
+    <section className="pluggo-home-news section-anchor">
+      <div className="pluggo-home-news__shell">
+        <div className="pluggo-home-news__header">
+          <div className="pluggo-home-news__heading">
+            <span className="pluggo-home-news__eyebrow">Plug Go News</span>
+
+            <h2 className="pluggo-home-news__title">
+              Conteúdos e novidades para acompanhar o mercado com mais clareza
             </h2>
+
+            <p className="pluggo-home-news__description">
+              Acompanhe notícias, tendências e conteúdos da Plug Go sobre
+              tecnologia, mercado, inovação e soluções para pessoas e empresas.
+            </p>
           </div>
 
-          <Link href="/news" className="news-header-button">
-            Ver Todos
+          <Link className="pluggo-home-news__button" href="/news">
+            Ver Todas
           </Link>
         </div>
 
-        <div className="news-grid">
-          {items.map((item) => (
-            <article key={item.slug} className="news-card">
-              <Link href={`/news/${item.slug}`} className="news-card__image-link">
-                <div className="news-card__image-wrap">
-                  {item.coverImage ? (
-                    <img
-                      src={item.coverImage}
-                      alt={item.coverImageAlt || item.title}
-                      className="news-card__image"
-                    />
-                  ) : (
-                    <div className="news-card__image news-card__image--placeholder" />
-                  )}
-                </div>
-              </Link>
-
-              <div className="news-card__content">
-                <span className="news-card__badge">{item.category}</span>
-
-                <h3 className="news-card__title">
-                  <Link href={`/news/${item.slug}`}>{item.title}</Link>
-                </h3>
-
-                <div className="news-card__meta">
-                  <span className="news-card__author">
-                    por {item.author || "Plug Go"}
-                  </span>
-
-                  <span className="news-card__meta-separator" />
-
-                  <span className="news-card__date">
-                    <CalendarDays size={15} strokeWidth={2} />
-                    {item.publishedAt}
-                  </span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        {result.items.length === 0 ? (
+          <div className="pluggo-home-news__empty">
+            Sem notícias publicadas no momento.
+          </div>
+        ) : (
+          <div className="pluggo-home-news__grid">
+            {result.items.map((item) => (
+              <NewsCard key={item.id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

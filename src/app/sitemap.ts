@@ -1,0 +1,55 @@
+import type { MetadataRoute } from "next";
+import { prisma } from "@/lib/db/prisma";
+import { getSiteUrl } from "@/lib/news/helpers";
+import { publishDueScheduledPosts } from "@/lib/news/queries";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = getSiteUrl();
+
+  await publishDueScheduledPosts();
+
+  const [posts] = await Promise.all([
+    prisma.newsPost.findMany({
+      where: {
+        status: "PUBLISHED",
+        deletedAt: null,
+        allowIndexing: true,
+      },
+      select: {
+        slug: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    }),
+  ]);
+
+  const staticRoutes = [
+    "",
+    "/sobre",
+    "/contato",
+    "/solucoes",
+    "/segmentos",
+    "/seguranca",
+    "/para-voce",
+    "/para-sua-empresa",
+    "/news",
+  ];
+
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
+    url: `${siteUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === "/news" ? "daily" : "weekly",
+    priority: route === "" ? 1 : 0.8,
+  }));
+
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${siteUrl}/news/${post.slug}`,
+    lastModified: post.updatedAt,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...postEntries];
+}
