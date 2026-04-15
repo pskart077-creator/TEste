@@ -132,7 +132,7 @@ export const SITE_NAV_ITEMS: NavItem[] = [
       },
     },
   },
-  /*{
+  {
     label: "Plataforma",
     href: "/plataforma",
     dropdown: {
@@ -178,7 +178,7 @@ export const SITE_NAV_ITEMS: NavItem[] = [
         imageAlt: "Plataforma PlugGo",
       },
     },
-  }*/,
+  },
   {
     label: "Desenvolvedores",
     href: "/desenvolvedores",
@@ -190,12 +190,12 @@ export const SITE_NAV_ITEMS: NavItem[] = [
           target: "_blank",
           rel: "noopener noreferrer",
         },
-        /*  { label: "API Reference", href: "/news" },
+        { label: "API Reference", href: "/news" },
         { label: "SDKs e plugins", href: "/news" },
         { label: "Guias de integração", href: "/news" },
         { label: "Ambiente de testes", href: "/seguranca" },
         { label: "Release notes", href: "/news" },
-        { label: "Status page", href: "/seguranca" }*/,
+        { label: "Status page", href: "/seguranca" },
       ],
     },
   },
@@ -205,11 +205,11 @@ export const SITE_NAV_ITEMS: NavItem[] = [
     dropdown: {
       simpleLinks: [
         { label: "News", href: "/news" },
-        /* { label: "Cases de sucesso", href: "/segmentos" },
-{ label: "Conteúdos educativos", href: "/news" },
-{ label: "Central de ajuda", href: "/contato/suporte" },
-{ label: "Calculadora de potencial", href: "/segmentos" },
-{ label: "Materiais ricos", href: "/news" }, */,
+        { label: "Cases de sucesso", href: "/segmentos" },
+        { label: "Conteúdos educativos", href: "/news" },
+        { label: "Central de ajuda", href: "/contato/suporte" },
+        { label: "Calculadora de potencial", href: "/segmentos" },
+        { label: "Materiais ricos", href: "/news" },
       ],
     },
   },
@@ -219,10 +219,10 @@ export const SITE_NAV_ITEMS: NavItem[] = [
     dropdown: {
       simpleLinks: [
         { label: "Sobre a PlugGo", href: "/sobre" },
-        /* { label: "Nossa tecnologia", href: "/sobre/hub-financeiro" },
+        { label: "Nossa tecnologia", href: "/sobre/hub-financeiro" },
         { label: "Diferenciais", href: "/sobre/visao" },
         { label: "Parceiros", href: "/contato/parcerias" },
-        { label: "Carreiras", href: "/sobre/missao" }*/,
+        { label: "Carreiras", href: "/sobre/missao" },
         { label: "Contato", href: "/contato" },
       ],
     },
